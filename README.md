@@ -18,7 +18,6 @@ Student at Lovely Professional University
 ## 🚀 Features
 
 - ✂️ **URL Shortening** – Create short URLs with custom or auto-generated shortcodes.
-- 📊 **Click Analytics** – Tracks click statistics with time, location, and referrer data.
 - ⏰ **Expiration** – URL validity can be set (in days) and auto-handled.
 - 📡 **Remote Logging** – All logs are sent securely to the evaluation logging service.
 - 💎 **Unique Shortcodes** – Globally unique, collision-resistant codes.
@@ -30,16 +29,13 @@ Student at Lovely Professional University
 
 ## ⚙️ Setup & Installation
 
-```bash
 git clone https://github.com/alokkumaar1/12207821.git
 cd 12207821
 npm install
 npm start
 Or use the setup script:
 
-bash
-Copy
-Edit
+
 npm run setup
 📡 API Endpoints
 ✅ 1. Health Check
@@ -109,9 +105,7 @@ Logs are securely sent to the Afford Medical Evaluation Service /logs endpoint.
 Middleware automatically fetches and refreshes your token when needed.
 
 📄 Sample Log Payload
-json
-Copy
-Edit
+jsonCopyEdit
 {
   "stack": "backend",
   "level": "info",
@@ -122,21 +116,16 @@ Edit
 You can log custom events using:
 
 js
-Copy
-Edit
+
 const { Log } = require('./middleware/loggingMiddleware');
 Log("backend", "info", "service", "Short URL created successfully");
 🧪 Testing
 To run the tests:
 
-bash
-Copy
-Edit
+
 npm test
 📁 Project Structure
-bash
-Copy
-Edit
+
 12207821/
 ├── middleware/
 │   └── loggingMiddleware.js       # Logs to evaluation service
