@@ -68,3 +68,81 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+                                                                                                                        PS C:\Windows\system32> curl -Method Post "http://20.244.56.144/evaluation-service/register" `                          >>   -Headers @{ "Content-Type" = "application/json" } `
+>>   -Body '{
+>>     "email": "alokkumar82473@gmail.com",
+>>     "name": "Alok Kumar",
+>>     "mobileNo": "9006808449",
+>>     "githubUsername": "alokkumaar1",
+>>     "rollNo": "12207821",
+>>     "accessCode": "CZypQK"
+>>   }'
+>>
+
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"email":"alokkumar82473@gmail.com","name":"alok kumar","rollNo":"12207821","accessCode":"CZypQK","
+                    clientID":"d31e9d1b-5c25-49ee-9018-4bcaaf54cf71","clientSecret":"njgaSUVKeUtVCdRX"}
+RawContent        : HTTP/1.1 200 OK
+                    Access-Control-Allow-Credentials: true                                                                                  Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token,                              Authorization, accept, origin, Cache-Control, X-Requ...                                             Forms             : {}                                                                                                  Headers           : {[Access-Control-Allow-Credentials, true], [Access-Control-Allow-Headers, Content-Type,
+                    Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control,
+                    X-Requested-With], [Access-Control-Allow-Methods, POST, OPTIONS, GET, PUT],
+                    [Access-Control-Allow-Origin, *]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 182
+
+
+
+PS C:\Windows\system32> curl -Method Post "http://20.244.56.144/evaluation-service/auth" `
+>>   -Headers @{ "Content-Type" = "application/json" } `
+>>   -Body '{
+>>     "email": "alokkumar82473@gmail.com",
+>>     "name": "Alok Kumar",
+>>     "rollNo": "12207821",
+>>     "accessCode": "CZypQK",
+>>     "clientID": "d31e9d1b-5c25-49ee-9018-4bcaaf54cf71",
+>>     "clientSecret": "njgaSUVKeUtVCdRX"
+>>   }'
+>>
+
+
+StatusCode        : 201
+StatusDescription : Created
+Content           : {"token_type":"Bearer","access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiYXV
+                    kIjoiaHR0cDovLzIwLjI0NC41Ni4xNDQvZXZhbHVhdGlvbi1zZXJ2aWNlIiwiZW1haWwiOiJhbG9ra3VtYXI4MjQ3M0BnbWFpbC
+                    5j...
+RawContent        : HTTP/1.1 201 Created
+                    Access-Control-Allow-Credentials: true
+                    Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token,
+                    Authorization, accept, origin, Cache-Control, X...
+Forms             : {}
+Headers           : {[Access-Control-Allow-Credentials, true], [Access-Control-Allow-Headers, Content-Type,
+                    Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control,
+                    X-Requested-With], [Access-Control-Allow-Methods, POST, OPTIONS, GET, PUT],
+                    [Access-Control-Allow-Origin, *]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 802
+
+
+
+PS C:\Windows\system32>
+
+
+
+
+
+
+
+
+
+
+
