@@ -1,148 +1,155 @@
-# Getting Started with Create React App
+# 🔗 URL Shortener Microservice
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A robust HTTP URL Shortener Microservice built using **Express.js**. This project supports secure URL shortening, analytics tracking, and remote logging integration with Afford Medical Technologies' evaluation service.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 👤 Made By
 
-### `npm start`
+**Alok Kumar**  
+Student at Lovely Professional University  
+📜 Reg No: `12207821`  
+🌐 [Portfolio](https://alokkumar.vercel.app)  
+🔗 [LinkedIn](https://www.linkedin.com/in/alokkumar48)  
+💻 [GitHub](https://github.com/alokkumaar1)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Features
 
-### `npm test`
+- ✂️ **URL Shortening** – Create short URLs with custom or auto-generated shortcodes.
+- 📊 **Click Analytics** – Tracks click statistics with time, location, and referrer data.
+- ⏰ **Expiration** – URL validity can be set (in days) and auto-handled.
+- 📡 **Remote Logging** – All logs are sent securely to the evaluation logging service.
+- 💎 **Unique Shortcodes** – Globally unique, collision-resistant codes.
+- 🛡️ **Security First** – Includes rate limiting, CORS, and headers.
+- 💚 **Health Endpoint** – Built-in `/health` status checker.
+- 📦 **Modular Architecture** – Routes, services, and middleware are separated cleanly.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ⚙️ Setup & Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/alokkumaar1/12207821.git
+cd 12207821
+npm install
+npm start
+Or use the setup script:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+bash
+Copy
+Edit
+npm run setup
+📡 API Endpoints
+✅ 1. Health Check
+GET /health
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Returns the status of the service.
 
-### `npm run eject`
+json
+Copy
+Edit
+{
+  "status": "OK",
+  "timestamp": "2025-07-14T10:00:00Z",
+  "service": "URL Shortener Microservice"
+}
+🔗 2. Create Short URL
+POST /shorturls
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+json
+Copy
+Edit
+{
+  "url": "https://www.google.com",
+  "validity": 30,
+  "shortcode": "goog" // optional
+}
+Response:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+json
+Copy
+Edit
+{
+  "shortLink": "http://localhost:3000/goog",
+  "expiry": "2025-08-13T10:00:00Z"
+}
+↪️ 3. Redirect to Original URL
+GET /:shortcode
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Automatically redirects to the original URL.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+📊 4. Get URL Statistics
+GET /shorturls/:shortcode
 
-## Learn More
+json
+Copy
+Edit
+{
+  "shortcode": "goog",
+  "originalUrl": "https://www.google.com",
+  "createdAt": "...",
+  "expiryTime": "...",
+  "totalClicks": 3,
+  "clicks": [
+    {
+      "timestamp": "...",
+      "referrer": "direct",
+      "location": "Unknown"
+    }
+  ]
+}
+📝 Logging Middleware Integration
+📍 How It Works
+Every incoming request and outgoing response is automatically logged.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Logs are securely sent to the Afford Medical Evaluation Service /logs endpoint.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Middleware automatically fetches and refreshes your token when needed.
 
-### Code Splitting
+📄 Sample Log Payload
+json
+Copy
+Edit
+{
+  "stack": "backend",
+  "level": "info",
+  "package": "middleware",
+  "message": "Incoming request: POST /shorturls"
+}
+➕ Custom Logs
+You can log custom events using:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+js
+Copy
+Edit
+const { Log } = require('./middleware/loggingMiddleware');
+Log("backend", "info", "service", "Short URL created successfully");
+🧪 Testing
+To run the tests:
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-
-                                                                                                                        PS C:\Windows\system32> curl -Method Post "http://20.244.56.144/evaluation-service/register" `                          >>   -Headers @{ "Content-Type" = "application/json" } `
->>   -Body '{
->>     "email": "alokkumar82473@gmail.com",
->>     "name": "Alok Kumar",
->>     "mobileNo": "9006808449",
->>     "githubUsername": "alokkumaar1",
->>     "rollNo": "12207821",
->>     "accessCode": "CZypQK"
->>   }'
->>
-
-
-StatusCode        : 200
-StatusDescription : OK
-Content           : {"email":"alokkumar82473@gmail.com","name":"alok kumar","rollNo":"12207821","accessCode":"CZypQK","
-                    clientID":"d31e9d1b-5c25-49ee-9018-4bcaaf54cf71","clientSecret":"njgaSUVKeUtVCdRX"}
-RawContent        : HTTP/1.1 200 OK
-                    Access-Control-Allow-Credentials: true                                                                                  Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token,                              Authorization, accept, origin, Cache-Control, X-Requ...                                             Forms             : {}                                                                                                  Headers           : {[Access-Control-Allow-Credentials, true], [Access-Control-Allow-Headers, Content-Type,
-                    Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control,
-                    X-Requested-With], [Access-Control-Allow-Methods, POST, OPTIONS, GET, PUT],
-                    [Access-Control-Allow-Origin, *]...}
-Images            : {}
-InputFields       : {}
-Links             : {}
-ParsedHtml        : mshtml.HTMLDocumentClass
-RawContentLength  : 182
-
-
-
-PS C:\Windows\system32> curl -Method Post "http://20.244.56.144/evaluation-service/auth" `
->>   -Headers @{ "Content-Type" = "application/json" } `
->>   -Body '{
->>     "email": "alokkumar82473@gmail.com",
->>     "name": "Alok Kumar",
->>     "rollNo": "12207821",
->>     "accessCode": "CZypQK",
->>     "clientID": "d31e9d1b-5c25-49ee-9018-4bcaaf54cf71",
->>     "clientSecret": "njgaSUVKeUtVCdRX"
->>   }'
->>
-
-
-StatusCode        : 201
-StatusDescription : Created
-Content           : {"token_type":"Bearer","access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiYXV
-                    kIjoiaHR0cDovLzIwLjI0NC41Ni4xNDQvZXZhbHVhdGlvbi1zZXJ2aWNlIiwiZW1haWwiOiJhbG9ra3VtYXI4MjQ3M0BnbWFpbC
-                    5j...
-RawContent        : HTTP/1.1 201 Created
-                    Access-Control-Allow-Credentials: true
-                    Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token,
-                    Authorization, accept, origin, Cache-Control, X...
-Forms             : {}
-Headers           : {[Access-Control-Allow-Credentials, true], [Access-Control-Allow-Headers, Content-Type,
-                    Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control,
-                    X-Requested-With], [Access-Control-Allow-Methods, POST, OPTIONS, GET, PUT],
-                    [Access-Control-Allow-Origin, *]...}
-Images            : {}
-InputFields       : {}
-Links             : {}
-ParsedHtml        : mshtml.HTMLDocumentClass
-RawContentLength  : 802
-
-
-
-PS C:\Windows\system32>
-
-
-
-
-
-
-
-
-
-
-
+bash
+Copy
+Edit
+npm test
+📁 Project Structure
+bash
+Copy
+Edit
+12207821/
+├── middleware/
+│   └── loggingMiddleware.js       # Logs to evaluation service
+├── routes/
+│   └── urlRoutes.js               # Express API endpoints
+├── services/
+│   └── urlShortenerService.js     # URL generation and validation logic
+├── tests/
+│   └── urlShortener.test.js       # Unit tests
+├── examples/
+│   └── api-example.js             # Example API usage
+├── screenshots/
+│   └── *.png                      # Screenshots for documentation
+├── server.js                      # Entry point
+├── package.json                   # NPM config
+└── README.md                      # You are here
